@@ -1,0 +1,29 @@
+{
+  "name": "webpack-conditional-loader",
+  "version": "1.0.0",
+  "description": "#ifdef for JavaScript",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test",
+    "src": "src"
+  },
+  "dependencies": {
+    "webpack": "^3.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caiogondim/webpack-conditional-loader.git"
+  },
+  "keywords": [],
+  "author": "Caio Gondim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/caiogondim/webpack-conditional-loader/issues"
+  },
+  "homepage": "https://github.com/caiogondim/webpack-conditional-loader#readme"
+}

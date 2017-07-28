@@ -9,12 +9,13 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "faucet": "0.0.1",
     "standard": "^10.0.2",
     "tape": "^4.7.0",
     "webpack": "^3.4.1"
   },
   "scripts": {
-    "test": "NODE_ENV=PRODUCTION node scripts/build && tape 'test/index.js' && standard --fix './src/**/*.js' './test/**/.js'",
+    "test": "NODE_ENV=PRODUCTION node scripts/build && tape 'test/index.js' | faucet && standard --fix './src/**/*.js' './test/**/.js'",
     "build": "webpack --config webpack.js"
   },
   "repository": {

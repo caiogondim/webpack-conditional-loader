@@ -8,7 +8,7 @@ function searchBlocks (sourceByLine) {
   const blocks = []
   let current = 0
   const startBlock = /\/\/ #if .*/
-  const endBlock = /\/\/ #endif.*/
+  const endBlock = /\/\/ #endif$/
 
   while (current < sourceByLine.length) {
     if (startBlock.test(sourceByLine[current])) {

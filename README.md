@@ -22,11 +22,14 @@ npm install --save-dev webpack-conditional-loader
 
 ### In your `webpack.config.js`
 
+Put `webpack-conditional-loader` as the last loader in the array, so it will process the code before
+all others.
+
 ```js
 module: {
   rules: [{
     test: /\.js$/,
-    use: ['conditional-loader']
+    use: ['babel-loader', 'webpack-conditional-loader']
   }]
 }
 ```

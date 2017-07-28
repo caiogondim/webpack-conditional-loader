@@ -6,6 +6,12 @@
   <img src="http://travis-ci.org/caiogondim/webpack-conditional-loader.svg?branch=master" alt="Travis CI"> <img src="https://codecov.io/gh/caiogondim/webpack-conditional-loader/branch/master/graph/badge.svg" alt="Code coverage"> <a href="https://www.npmjs.com/package/webpack-conditional-loader"><img src="https://img.shields.io/npm/v/webpack-conditional-loader.svg" /></a>
 </div>
 
+Inspired by [C conditionals directive](https://gcc.gnu.org/onlinedocs/gcc-3.0.2/cpp_4.html),
+conditional loader decides if a given block should be included in the final bundle.
+
+Useful for removing instrumentation code and making your final production bundle smaller (therefore
+faster).
+
 ## Installation
 
 ```bash

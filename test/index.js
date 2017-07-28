@@ -6,6 +6,8 @@ function build() {
   return webpack(webpackConfig)
 }
 
-build().then(() => {
-  console.log('Done')
-})
+build()
+  .then(() => {
+    console.log('Done')
+  })
+  .catch((error) => console.error(error))

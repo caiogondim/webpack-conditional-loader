@@ -13,13 +13,12 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "faucet": "0.0.1",
     "standard": "^10.0.2",
-    "tape": "^4.7.0",
+    "tap": "^10.7.0",
     "webpack": "^3.4.1"
   },
   "scripts": {
-    "test": "NODE_ENV=PRODUCTION npm run build && tape 'test/index.js' | faucet",
+    "test": "NODE_ENV=PRODUCTION npm run build && tap 'test/index.js'",
     "lint": "standard --fix './src/**/*.js' './test/**/.js'",
     "build": "webpack --config webpack.js > /dev/null"
   },

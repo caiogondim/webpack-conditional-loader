@@ -7,12 +7,13 @@
     "test": "test",
     "src": "src"
   },
-  "dependencies": {
-    "webpack": "^3.4.1"
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^3.4.1",
+    "standard": "^10.0.2"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "standard --fix './src/**/*.js' './test/**/.js'",
     "build": "webpack --config webpack.js"
   },
   "repository": {

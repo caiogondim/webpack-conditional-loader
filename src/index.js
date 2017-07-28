@@ -1,12 +1,14 @@
-function getPredicate(line) {
-  return /\/\/\ #if\ (.*)/.exec(line)[1]
+/* eslint-disable no-eval */
+
+function getPredicate (line) {
+  return /\/\/ #if (.*)/.exec(line)[1]
 }
 
-function searchBlocks(sourceByLine) {
+function searchBlocks (sourceByLine) {
   const blocks = []
   let current = 0
-  const startBlock = /\/\/\ #if\ .*/
-  const endBlock = /\/\/\ #endif.*/
+  const startBlock = /\/\/ #if .*/
+  const endBlock = /\/\/ #endif.*/
 
   while (current < sourceByLine.length) {
     if (startBlock.test(sourceByLine[current])) {
@@ -28,13 +30,13 @@ function searchBlocks(sourceByLine) {
       continue
     }
 
-    current +=1
+    current += 1
   }
 
   return blocks
 }
 
-function getTruthyBlocks(blocks) {
+function getTruthyBlocks (blocks) {
   const truthyBlocks = blocks.slice()
   let i = 0
   let action = ''
@@ -58,7 +60,7 @@ function getTruthyBlocks(blocks) {
   return truthyBlocks
 }
 
-function commentCodeInsideBlocks(sourceByLine, blocks) {
+function commentCodeInsideBlocks (sourceByLine, blocks) {
   let currentBlock
   let i = 0
   let action = ''
@@ -89,11 +91,11 @@ function commentCodeInsideBlocks(sourceByLine, blocks) {
   return sourceByLineTransformed
 }
 
-function commentLine(line) {
+function commentLine (line) {
   return `// ${line}`
 }
 
-module.exports = function(source) {
+module.exports = function (source) {
   try {
     const sourceByLine = source.split('\n')
     const blocks = searchBlocks(sourceByLine)

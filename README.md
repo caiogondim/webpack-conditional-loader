@@ -53,6 +53,14 @@ console.log('ipsum')
 In the example above, the code will be removed if the enviroment variable `NODE_ENV` is not
 `DEVELOPMENT`, removing unnecessary code from your production bundle.
 
+The same technique can be used to prevent loading packages in the production bundle.
+
+```js
+// #if process.env.NODE_ENV !== 'BUILD'
+import reduxLogger from 'redux-logger'
+// #endif
+```
+
 ## Credits
 - [GCC C conditional documentation](https://gcc.gnu.org/onlinedocs/gcc-3.0.2/cpp_4.html)
 

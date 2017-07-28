@@ -15,8 +15,9 @@
     "webpack": "^3.4.1"
   },
   "scripts": {
-    "test": "NODE_ENV=PRODUCTION node scripts/build && tape 'test/index.js' | faucet && standard --fix './src/**/*.js' './test/**/.js'",
-    "build": "webpack --config webpack.js"
+    "test": "NODE_ENV=PRODUCTION npm run build && tape 'test/index.js' | faucet",
+    "lint": "standard --fix './src/**/*.js' './test/**/.js'",
+    "build": "webpack --config webpack.js > /dev/null"
   },
   "repository": {
     "type": "git",

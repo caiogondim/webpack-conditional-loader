@@ -1,13 +1,18 @@
+function getPredicate(line) {
+  return /\/\/\ #if\ (.*)/.exec(line)[1]
+}
+
 function searchBlocks(sourceByLine) {
   const blocks = []
   let current = 0
-  const startBlock = /\/\/\ #if.*/
+  const startBlock = /\/\/\ #if\ .*/
   const endBlock = /\/\/\ #endif.*/
 
   while (current < sourceByLine.length) {
     if (startBlock.test(sourceByLine[current])) {
       blocks[current] = {
-        type: 'begin'
+        type: 'begin',
+        predicate: getPredicate(sourceByLine[current])
       }
 
       current += 1
@@ -29,32 +34,56 @@ function searchBlocks(sourceByLine) {
   return blocks
 }
 
+function getTruthyBlocks(blocks) {
+  const truthyBlocks = blocks.slice()
+  let i = 0
+  let action = ''
+
+  while (i < truthyBlocks.length) {
+    if (truthyBlocks[i] && truthyBlocks[i].type === 'begin') {
+      if (eval(truthyBlocks[i].predicate)) {
+        truthyBlocks[i] = undefined
+        action = 'deleteNextEndBlock'
+      }
+    }
+
+    if (truthyBlocks[i] && truthyBlocks[i].type === 'end' && action === 'deleteNextEndBlock') {
+      truthyBlocks[i] = undefined
+      action = ''
+    }
+
+    i += 1
+  }
+
+  return truthyBlocks
+}
+
 function commentCodeInsideBlocks(sourceByLine, blocks) {
-  let currentLine = 0
   let currentBlock
+  let i = 0
   let action = ''
   let sourceByLineTransformed = sourceByLine.slice()
 
-  while (currentLine < sourceByLine.length) {
-    currentBlock = blocks[currentLine]
+  while (i < sourceByLine.length) {
+    currentBlock = blocks[i]
 
     if (currentBlock && currentBlock.type === 'begin') {
-      action = 'comment'
-      currentLine += 1
+      action = 'commentLine'
+      i += 1
       continue
     }
 
     if (currentBlock && currentBlock.type === 'end') {
       action = ''
-      currentLine += 1
+      i += 1
       continue
     }
 
-    if (action === 'comment') {
-      sourceByLineTransformed[currentLine] = commentLine(sourceByLine[currentLine])
+    if (action === 'commentLine') {
+      sourceByLineTransformed[i] = commentLine(sourceByLine[i])
     }
 
-    currentLine += 1
+    i += 1
   }
 
   return sourceByLineTransformed
@@ -68,8 +97,9 @@ module.exports = function(source) {
   try {
     const sourceByLine = source.split('\n')
     const blocks = searchBlocks(sourceByLine)
-    // const truthyBlocks = getTruthyBlocks()
-    const transformedSource = commentCodeInsideBlocks(sourceByLine, blocks)
+    const truthyBlocks = getTruthyBlocks(blocks)
+    const transformedSource = commentCodeInsideBlocks(sourceByLine, truthyBlocks)
+
     return transformedSource.join('\n')
   } catch (error) {
     console.error(error)

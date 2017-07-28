@@ -3,7 +3,7 @@
 <h1 align="center">webpack-conditional-loader</h1>
 
 <div align="center">
-  <img src="http://travis-ci.org/caiogondim/webpack-conditional-loader.svg?branch=master" alt="Travis CI"> <a href="https://www.npmjs.com/package/webpack-conditional-loader"><img src="https://img.shields.io/npm/v/webpack-conditional-loader.svg" /></a>
+  <a href="https://www.npmjs.com/package/webpack-conditional-loader"><img src="https://img.shields.io/npm/v/webpack-conditional-loader.svg" /></a>
 </div>
 
 <br>

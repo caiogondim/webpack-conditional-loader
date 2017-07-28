@@ -14,9 +14,33 @@ npm install --save-dev webpack-conditional-loader
 
 ## Usage
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto officia placeat perspiciatis,
-voluptatem laborum eveniet animi vero labore, doloremque fugit unde, doloribus saepe totam sit
-consequuntur sed nemo sapiente! Hic!
+### In your `webpack.config.js`
+
+```js
+module: {
+  rules: [{
+    test: /\.js$/,
+    use: ['conditional-loader']
+  }]
+}
+```
+
+Get an example config file [here](https://github.com/caiogondim/webpack-conditional-loader/blob/master/webpack.js)
+
+### On your code
+
+Use `// #if expression` and `// #endif` to wrap blocks of code you want to be removed if a given
+predicate is false.
+
+In the example below, the code will be removed if the enviroment variable `NODE_ENV` is not
+`DEVELOPMENT`, removing unnecessary code on your production bundle.
+
+```js
+// #if process.env.NODE_ENV === 'DEVELOPMENT'
+console.log('lorem')
+console.log('ipsum')
+// #endif
+```
 
 ## Credits
 - GCC C conditional documentation

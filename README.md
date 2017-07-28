@@ -43,7 +43,7 @@ console.log('ipsum')
 ```
 
 ## Credits
-- GCC C conditional documentation
+- [GCC C conditional documentation](https://gcc.gnu.org/onlinedocs/gcc-3.0.2/cpp_4.html)
 
 ---
 

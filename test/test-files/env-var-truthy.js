@@ -1,11 +1,7 @@
-var a = 1
+let a = 1
 
 // #if process.env.NODE_ENV === 'PRODUCTION'
-a =+ 1
-// #endif
-
-// #if 1 === 2
-a =+ 1
+a = 2
 // #endif
 
 module.exports = a

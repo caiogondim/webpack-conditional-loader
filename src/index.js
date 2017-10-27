@@ -7,8 +7,8 @@ function getPredicate (line) {
 function searchBlocks (sourceByLine) {
   const blocks = []
   let current = 0
-  const startBlock = /\/\/ #if .*/
-  const endBlock = /\/\/ #endif$/
+  const startBlock = /\/\/ #if .*/m
+  const endBlock = /\/\/ #endif$/m
 
   while (current < sourceByLine.length) {
     if (startBlock.test(sourceByLine[current])) {

@@ -1,5 +1,5 @@
 /* eslint-disable no-eval */
-var os = require('os');
+const os = require('os');
 
 function getPredicate (line) {
   return /\/\/ #if (.*)/.exec(line)[1]

@@ -1,6 +1,6 @@
 {
   "name": "webpack-conditional-loader",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "#ifdef for JavaScript",
   "main": "src/index.js",
   "directories": {

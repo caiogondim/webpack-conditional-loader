@@ -1,4 +1,4 @@
-<img src="https://file-mslsxgbvem.now.sh/banner.svg" width="100%" />
+<img src="http://rawgit.com/caiogondim/webpack-conditional-loader/master/logo/banner.svg" width="100%" />
 
 <h1 align="center">webpack-conditional-loader</h1>
 

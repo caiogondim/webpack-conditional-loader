@@ -1,8 +1,8 @@
 <img src="http://rawgit.com/caiogondim/webpack-conditional-loader/master/logo/banner.svg" width="100%" />
 
-<h1 align="center">webpack-conditional-loader</h1>
+# webpack-conditional-loader
 
-<div align="center">
+<div>
   <a href="https://www.npmjs.com/package/webpack-conditional-loader"><img src="https://img.shields.io/npm/v/webpack-conditional-loader.svg" /></a>
 </div>
 

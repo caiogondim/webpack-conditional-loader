@@ -100,7 +100,7 @@ module.exports = function (source) {
   try {
     const sourceByLine = source.split(os.EOL)
     const blocks = searchBlocks(sourceByLine)
-    const truthyBlocks = getTruthyBlocks(blocks)
+    const truthyBlocks = getTruthyBlocks.call(this, blocks)
     const transformedSource = commentCodeInsideBlocks(sourceByLine, truthyBlocks)
 
     return transformedSource.join('\n')

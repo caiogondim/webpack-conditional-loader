@@ -61,6 +61,32 @@ import reduxLogger from 'redux-logger'
 // #endif
 ```
 
+You can pass variables as options to the loader:
+
+```js
+// webpack.config.js
+module: {
+  rules: [{
+    test: /\.js$/,
+    use: [
+      'babel-loader',
+      {
+        loader: 'webpack-conditional-loader',
+        options: {
+          isReady: true
+        }
+    ]
+  }]
+}
+```
+```js
+// myFile.js
+// #if isReady
+console.log(`I'm ready!`)
+// #endif
+
+```
+
 ## Credits
 - [GCC C conditional documentation](https://gcc.gnu.org/onlinedocs/gcc-3.0.2/cpp_4.html)
 

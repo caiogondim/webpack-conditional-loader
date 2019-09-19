@@ -96,9 +96,19 @@ function commentLine (line) {
   return `// ${line}`
 }
 
+function getEOL(text) {
+    const m = text.match(/\r\n|\n/g);
+    const u = m && m.filter(a => a === '\n').length;
+    const w = m && m.length - u;
+    if (u === w) {
+        return os.EOL; // use the OS default
+    }
+    return u > w ? '\n' : '\r\n';
+}
+
 module.exports = function (source) {
   try {
-    const sourceByLine = source.split(os.EOL)
+    const sourceByLine = source.split(getEOL(source))
     const blocks = searchBlocks(sourceByLine)
     const truthyBlocks = getTruthyBlocks(blocks)
     const transformedSource = commentCodeInsideBlocks(sourceByLine, truthyBlocks)

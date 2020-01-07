@@ -1,5 +1,6 @@
 /* eslint-disable no-eval */
-const os = require('os');
+const os = require('os')
+const { getOptions } = require('loader-utils')
 
 function getPredicate (line) {
   return /\/\/ #if (.*)/.exec(line)[1]
@@ -37,13 +38,17 @@ function searchBlocks (sourceByLine) {
   return blocks
 }
 
-function getTruthyBlocks (blocks) {
+function getTruthyBlocks (blocks, options) {
   const truthyBlocks = blocks.slice()
   let i = 0
   let action = ''
 
   while (i < truthyBlocks.length) {
     if (truthyBlocks[i] && truthyBlocks[i].type === 'begin') {
+      // Let the predicate see the options we're giving.
+      Object.keys(options).forEach(k => {
+        global[k] = options[k]
+      })
       if (eval(truthyBlocks[i].predicate)) {
         truthyBlocks[i] = undefined
         action = 'deleteNextEndBlock'
@@ -100,7 +105,7 @@ module.exports = function (source) {
   try {
     const sourceByLine = source.split(os.EOL)
     const blocks = searchBlocks(sourceByLine)
-    const truthyBlocks = getTruthyBlocks(blocks)
+    const truthyBlocks = getTruthyBlocks(blocks, getOptions(this))
     const transformedSource = commentCodeInsideBlocks(sourceByLine, truthyBlocks)
 
     return transformedSource.join('\n')

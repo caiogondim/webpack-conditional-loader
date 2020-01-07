@@ -5,6 +5,8 @@ module.exports = {
   entry: {
     'env-var-truthy': './test/test-files/env-var-truthy.js',
     'env-var-falsey': './test/test-files/env-var-falsey.js',
+    'local-var-truthy': './test/test-files/local-var-truthy.js',
+    'local-var-falsey': './test/test-files/local-var-falsey.js',
     'falsey': './test/test-files/falsey.js',
     'truthy': './test/test-files/truthy.js'
   },
@@ -21,7 +23,15 @@ module.exports = {
   module: {
     rules: [{
       test: /\.js$/,
-      use: ['conditional-loader']
+      use: [{
+        loader: 'conditional-loader',
+        options: {
+          localVar: {
+            truthy: true,
+            falsey: false
+          }
+        }
+      }]
     }]
   }
 }
